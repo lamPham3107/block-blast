@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Board : MonoBehaviour
 {
-    private const int Size = 8;
+    public const int Size = 8;
     [SerializeField] private Cell cellPrefab;
     [SerializeField] private Transform cellTransform;
 
