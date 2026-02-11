@@ -1,14 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
+
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Block : MonoBehaviour
 {
     public const int size = 5;
     [SerializeField] private Cell cellPrefab;
+    [SerializeField] private Board board;
     private readonly Cell[,] cells = new Cell[size, size];
-
+    private Vector3 preMousePosition;
+    private Vector3 position;
+    private Vector3 scale;
+    private readonly Vector3 offset = new Vector3(0f, 2f, 0f);
+    private Vector3 inputPos;
+    private Camera cam;
+    private Vector2 center;
+    private Vector2Int currentDragPoint;
+    private Vector2Int previousDragPoint;
+    private int blockDataIndex;
+    private void Awake()
+    {
+        cam = Camera.main;
+    }
     public void Initialize()
     {
         for (int i = 0; i < size; i++)
@@ -19,15 +35,21 @@ public class Block : MonoBehaviour
             }
         }
 
+        position = transform.position;
+        scale = transform.localScale;
+
     }
 
     public void Show(int BlockDataIndex)
     {
+        // luu chi so block du lieu hien thi
+        this.blockDataIndex = BlockDataIndex;
         Hide();
+        // hien thi block du lieu tu BlockData
         var blockData = BlockData.Get(BlockDataIndex);
         var rows = blockData.GetLength(0);
         var cols = blockData.GetLength(1);
-        var center = new Vector2(cols / 2.0f, rows / 2.0f);
+        center = new Vector2(cols / 2.0f, rows / 2.0f);
         for (int r = 0; r < rows; r++)
         {
             for (int c = 0; c < cols; c++)
@@ -49,5 +71,43 @@ public class Block : MonoBehaviour
                 cells[i, j].Hide();
             }
         }
+    }
+
+    private void OnMouseDown()
+    {
+        // lay vi tri chuot trong the gioi
+        inputPos = cam.ScreenToWorldPoint(Input.mousePosition);
+        transform.position = position + offset;
+        transform.localScale = Vector3.one;
+        currentDragPoint = Vector2Int.RoundToInt((Vector2)transform.position - center);
+        board.Hover(currentDragPoint, blockDataIndex);
+        previousDragPoint = currentDragPoint;
+        preMousePosition = Input.mousePosition;
+        
+    }
+    private void OnMouseUp()
+    {
+        Debug.Log("Block OnMouseUp");
+        transform.position = position;
+        transform.localScale = scale;
+    }
+    private void OnMouseDrag()
+    {
+        var curentMousePosition = Input.mousePosition;
+        if(curentMousePosition != preMousePosition)
+        {
+            preMousePosition = curentMousePosition;
+            // tinh toan vi tri moi
+            var inputDelta = cam.ScreenToWorldPoint(curentMousePosition) - inputPos;
+            transform.position = position + offset + inputDelta * 1.2f;
+            currentDragPoint = Vector2Int.RoundToInt((Vector2)transform.position - center);
+            if(currentDragPoint != previousDragPoint)
+            {
+                previousDragPoint = currentDragPoint;
+                Debug.Log("Drag at " + currentDragPoint);
+            }
+            board.Hover(currentDragPoint, blockDataIndex);
+        }
+
     }
 }
