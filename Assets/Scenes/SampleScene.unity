@@ -170,6 +170,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2398522592871886611, guid: 5d481bc319e983346b6846a806c44752, type: 3}
+      propertyPath: board
+      value: 
+      objectReference: {fileID: 1099651934}
+    - target: {fileID: 2398522592871886611, guid: 5d481bc319e983346b6846a806c44752, type: 3}
+      propertyPath: blocks
+      value: 
+      objectReference: {fileID: 811403543}
     - target: {fileID: 3372894012422487504, guid: 5d481bc319e983346b6846a806c44752, type: 3}
       propertyPath: m_Name
       value: Block
@@ -701,6 +709,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2398522592871886611, guid: 5d481bc319e983346b6846a806c44752, type: 3}
+      propertyPath: board
+      value: 
+      objectReference: {fileID: 1099651934}
+    - target: {fileID: 2398522592871886611, guid: 5d481bc319e983346b6846a806c44752, type: 3}
+      propertyPath: blocks
+      value: 
+      objectReference: {fileID: 811403543}
     - target: {fileID: 3372894012422487504, guid: 5d481bc319e983346b6846a806c44752, type: 3}
       propertyPath: m_Name
       value: Block
@@ -826,6 +842,7 @@ MonoBehaviour:
   - {fileID: 305787991}
   - {fileID: 164131383}
   - {fileID: 394970096}
+  blockCount: 0
 --- !u!210 &811403544
 SortingGroup:
   m_ObjectHideFlags: 0
@@ -1089,6 +1106,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2398522592871886611, guid: 5d481bc319e983346b6846a806c44752, type: 3}
+      propertyPath: board
+      value: 
+      objectReference: {fileID: 1099651934}
+    - target: {fileID: 2398522592871886611, guid: 5d481bc319e983346b6846a806c44752, type: 3}
+      propertyPath: blocks
+      value: 
+      objectReference: {fileID: 811403543}
     - target: {fileID: 3372894012422487504, guid: 5d481bc319e983346b6846a806c44752, type: 3}
       propertyPath: m_Name
       value: Block

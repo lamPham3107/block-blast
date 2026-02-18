@@ -23,6 +23,7 @@ public class Cell : MonoBehaviour
         gameObject.SetActive(true);
         spriteRenderer.color = Color.white;
         spriteRenderer.sprite = highlightedSprite;
+        Debug.Log("Highlighted");
     }
     public void Hower()
     {

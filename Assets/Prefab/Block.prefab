@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 884385421687508639}
   - component: {fileID: 2398522592871886611}
   - component: {fileID: 7058108512669982096}
+  - component: {fileID: -2269512044416373060}
   m_Layer: 0
   m_Name: Block
   m_TagString: Untagged
@@ -46,6 +47,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cellPrefab: {fileID: 8486530902067624439, guid: 17ead920e91eba444bfb8ea30a889496, type: 3}
+  board: {fileID: 0}
+  blocks: {fileID: 0}
 --- !u!61 &7058108512669982096
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -91,3 +94,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 5, y: 5}
   m_EdgeRadius: 0
+--- !u!210 &-2269512044416373060
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3372894012422487504}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_SortAtRoot: 0

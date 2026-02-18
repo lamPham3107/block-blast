@@ -4,12 +4,15 @@ using System.Drawing;
 
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class Block : MonoBehaviour
 {
     public const int size = 5;
     [SerializeField] private Cell cellPrefab;
     [SerializeField] private Board board;
+    [SerializeField] private Blocks blocks;
+    private SortingGroup sortingGroup;
     private readonly Cell[,] cells = new Cell[size, size];
     private Vector3 preMousePosition;
     private Vector3 position;
@@ -24,6 +27,7 @@ public class Block : MonoBehaviour
     private void Awake()
     {
         cam = Camera.main;
+        sortingGroup = gameObject.GetComponent<SortingGroup>();
     }
     public void Initialize()
     {
@@ -58,6 +62,7 @@ public class Block : MonoBehaviour
                 {
                     cells[r, c].transform.localPosition = new Vector3(c - center.x, r - center.y, 0.0f);
                     cells[r, c].Normal();
+                    Debug.Log("Show cell at " + cells[r, c].transform.localPosition);
                 }
             }
         }
@@ -83,13 +88,22 @@ public class Block : MonoBehaviour
         board.Hover(currentDragPoint, blockDataIndex);
         previousDragPoint = currentDragPoint;
         preMousePosition = Input.mousePosition;
+        sortingGroup.sortingOrder = 4;
         
     }
     private void OnMouseUp()
     {
-        Debug.Log("Block OnMouseUp");
+        preMousePosition = Vector3.positiveInfinity;
+        currentDragPoint = Vector2Int.RoundToInt((Vector2)transform.position - center);
+        // neu dat khoi thanh cong thi an di
+        if(board.Place(currentDragPoint, blockDataIndex))
+        {
+            gameObject.SetActive(false);
+            blocks.Remove();
+        }
         transform.position = position;
         transform.localScale = scale;
+        sortingGroup.sortingOrder = 0;
     }
     private void OnMouseDrag()
     {
