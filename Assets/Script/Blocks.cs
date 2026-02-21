@@ -57,7 +57,7 @@ public class Blocks : MonoBehaviour
         }
         if (lose)
         {
-            Lose();
+            GameController.Instance.Lose();
         }
     }
 

@@ -97,5 +97,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e28506fb05c155141929ae419b5d8ec3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  normalSprite: {fileID: 21300000, guid: 6cded1821e54e8c47b1a70612be6dd71, type: 3}
+  colorSprites:
+  - {fileID: 21300000, guid: 5938bd5d018267a45aa0962f00fbabe7, type: 3}
+  - {fileID: 21300000, guid: ff4f9c37cc637a4489530258f579605c, type: 3}
+  - {fileID: 21300000, guid: d9c311d7992686046ad97297f5aaf0b7, type: 3}
+  - {fileID: 21300000, guid: 0e00e22c2302c4c429576e0e04ff4834, type: 3}
+  - {fileID: 21300000, guid: def4de0560faecd4391f9c8db825de08, type: 3}
+  - {fileID: 21300000, guid: 0a42d22be67a37d4fa5bfc7470b1eb11, type: 3}
+  - {fileID: 21300000, guid: 2b90e3c7527f12b459ab61df70c75928, type: 3}
+  - {fileID: 21300000, guid: 66eb32c73d649cd4f9fbd5f3e032498f, type: 3}
+  - {fileID: 21300000, guid: b52e3d5233afc6241a953a68fa449a2d, type: 3}
   highlightedSprite: {fileID: 21300000, guid: 46e9343aed49cff49859f404965f61cf, type: 3}

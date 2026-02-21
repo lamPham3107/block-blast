@@ -11,13 +11,13 @@ public class Board : MonoBehaviour
     public const int Size = 8;
     [SerializeField] private Cell cellPrefab;
     [SerializeField] private Transform cellTransform;
-
+    [SerializeField] private GameController gameController;
     private readonly Cell[,] cells = new Cell[Size, Size];
     private readonly int[,] boardData = new int[Size, Size]; // 0: empty, 1: hover, 2: normal
     private readonly List<Vector2Int> hoverPoints = new();
     private readonly List<int> fullLineCols = new();
     private readonly List<int> fullLineRows = new();
-
+    
     private void Start()
     {
         for (int i = 0; i < Size; i++)
@@ -141,9 +141,11 @@ public class Board : MonoBehaviour
             }
             if (isFull)
             {
+                gameController.AddScore();
                 fullLineCols.Add(c);
             }
         }
+        
     }
     private void FullLineRow(int fromRow, int toRow)
     {
@@ -161,6 +163,7 @@ public class Board : MonoBehaviour
             }
             if (isFull)
             {
+                gameController.AddScore();
                 fullLineRows.Add(r);
             }
         }
@@ -176,6 +179,7 @@ public class Board : MonoBehaviour
                 cells[c, row].Hide();
             }
         }
+
         fullLineRows.Clear();
     }
     private void ClearFullCols()
