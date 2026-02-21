@@ -14,6 +14,8 @@ public class Board : MonoBehaviour
     [SerializeField] private GameController gameController;
     private readonly Cell[,] cells = new Cell[Size, Size];
     private readonly int[,] boardData = new int[Size, Size]; // 0: empty, 1: hover, 2: normal
+    private readonly int[,] cellColors = new int[Size, Size];
+    private int currentHoverColor = 0;
     private readonly List<Vector2Int> hoverPoints = new();
     private readonly List<int> fullLineCols = new();
     private readonly List<int> fullLineRows = new();
@@ -31,14 +33,15 @@ public class Board : MonoBehaviour
         }
     }
 
-    public void Hover(Vector2Int point, int blockDataIndex)
+    public void Hover(Vector2Int point, int blockDataIndex, int colorIndex)
     {
         var blockData = BlockData.Get(blockDataIndex);
         var blockRows = blockData.GetLength(0);
         var blockCols = blockData.GetLength(1);
+        currentHoverColor = colorIndex;
         unHover();
         unHightLight();
-        HoverPonints(point, blockRows, blockCols, blockData);
+        HoverPonints(point, blockRows, blockCols, blockData );
         if (hoverPoints.Count > 0)
         {
             Hover();
@@ -76,6 +79,7 @@ public class Board : MonoBehaviour
         foreach (var point in hoverPoints)
         {
             boardData[point.x, point.y] = 1;
+            cells[point.x, point.y].SetColor(currentHoverColor);
             cells[point.x, point.y].Hower();
         }
     }
@@ -90,25 +94,28 @@ public class Board : MonoBehaviour
         hoverPoints.Clear();
     }
 
-    public bool Place(Vector2Int point, int blockDataIndex)
+    public bool Place(Vector2Int point, int blockDataIndex, int colorIndex)
     {
         var blockData = BlockData.Get(blockDataIndex);
         var blockRows = blockData.GetLength(0);
         var blockCols = blockData.GetLength(1);
+        currentHoverColor = colorIndex;
         unHover();
         HoverPonints(point, blockRows, blockCols, blockData);
         if (hoverPoints.Count > 0)
         {
-            Place(point, blockCols, blockRows);
+            PlaceBlock(point, blockCols, blockRows);
             return true;
         }
         return false;
     }
-    private void Place(Vector2Int point, int cols, int rows)
+    private void PlaceBlock(Vector2Int point, int cols, int rows)
     {
         foreach (var hoverPoint in hoverPoints)
         {
             boardData[hoverPoint.x, hoverPoint.y] = 2;
+            cellColors[hoverPoint.x, hoverPoint.y] = currentHoverColor;
+            cells[hoverPoint.x, hoverPoint.y].SetColor(currentHoverColor);
             cells[hoverPoint.x, hoverPoint.y].Normal();
         }
         CLearFullLine(point, cols, rows);
@@ -291,6 +298,7 @@ public class Board : MonoBehaviour
             {
                 if (boardData[c, r] == 2)
                 {
+                    cells[c, r].SetColor(cellColors[c, r]);
                     cells[c, r].Normal();
                 }
             }
@@ -305,6 +313,7 @@ public class Board : MonoBehaviour
             {
                 if (boardData[c, r] == 2)
                 {
+                    cells[c, r].SetColor(cellColors[c, r]);
                     cells[c, r].Normal();
                 }
             }

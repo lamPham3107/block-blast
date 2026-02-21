@@ -24,6 +24,7 @@ public class Block : MonoBehaviour
     private Vector2Int currentDragPoint;
     private Vector2Int previousDragPoint;
     private int blockDataIndex;
+    private int currentColorIndex;
     private void Awake()
     {
         cam = Camera.main;
@@ -54,6 +55,7 @@ public class Block : MonoBehaviour
         var rows = blockData.GetLength(0);
         var cols = blockData.GetLength(1);
         center = new Vector2(cols / 2.0f, rows / 2.0f);
+        currentColorIndex = Random.Range(0, cellPrefab.colorSprites.Length);
         for (int r = 0; r < rows; r++)
         {
             for (int c = 0; c < cols; c++)
@@ -61,6 +63,7 @@ public class Block : MonoBehaviour
                 if (blockData[r,c] > 0)
                 {
                     cells[r, c].transform.localPosition = new Vector3(c - center.x, r - center.y, 0.0f);
+                    cells[r, c].SetColor(currentColorIndex);
                     cells[r, c].Normal();
                     Debug.Log("Show cell at " + cells[r, c].transform.localPosition);
                 }
@@ -85,7 +88,7 @@ public class Block : MonoBehaviour
         transform.position = position + offset;
         transform.localScale = Vector3.one;
         currentDragPoint = Vector2Int.RoundToInt((Vector2)transform.position - center);
-        board.Hover(currentDragPoint, blockDataIndex);
+        board.Hover(currentDragPoint, blockDataIndex,currentColorIndex);
         previousDragPoint = currentDragPoint;
         preMousePosition = Input.mousePosition;
         sortingGroup.sortingOrder = 4;
@@ -96,7 +99,7 @@ public class Block : MonoBehaviour
         preMousePosition = Vector3.positiveInfinity;
         currentDragPoint = Vector2Int.RoundToInt((Vector2)transform.position - center);
         // neu dat khoi thanh cong thi an di
-        if(board.Place(currentDragPoint, blockDataIndex))
+        if(board.Place(currentDragPoint, blockDataIndex, currentColorIndex))
         {
             gameObject.SetActive(false);
             blocks.Remove();
@@ -120,7 +123,7 @@ public class Block : MonoBehaviour
                 previousDragPoint = currentDragPoint;
                 Debug.Log("Drag at " + currentDragPoint);
             }
-            board.Hover(currentDragPoint, blockDataIndex);
+            board.Hover(currentDragPoint, blockDataIndex, currentColorIndex);
         }
 
     }

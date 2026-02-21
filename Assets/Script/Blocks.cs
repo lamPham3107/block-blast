@@ -61,8 +61,4 @@ public class Blocks : MonoBehaviour
         }
     }
 
-    private void Lose()
-    {
-        Debug.Log("You lose!");
-    }
 }

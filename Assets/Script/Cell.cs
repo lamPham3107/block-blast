@@ -5,13 +5,17 @@ using UnityEngine;
 public class Cell : MonoBehaviour
 {
     private SpriteRenderer spriteRenderer;
-    [SerializeField] private Sprite[] colorSprites;
+    [SerializeField] public Sprite[] colorSprites;
     [SerializeField] private Sprite highlightedSprite;
     private Sprite currentSprite;
+    private int currentColorIndex;
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        currentSprite = SetRamdomColor();
+        if (colorSprites != null && colorSprites.Length > 0)
+        {
+            currentSprite = colorSprites[0];
+        }
     }
 
     public void Normal()
@@ -23,8 +27,8 @@ public class Cell : MonoBehaviour
     public void Highlighted()
     {
         gameObject.SetActive(true);
-        spriteRenderer.color = Color.white;
-        spriteRenderer.sprite = highlightedSprite;
+        spriteRenderer.color = new Color(1f, 1f, 1f, 0.5f);
+        spriteRenderer.sprite = currentSprite;
         Debug.Log("Highlighted");
     }
     public void Hower()
@@ -38,11 +42,15 @@ public class Cell : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    private Sprite SetRamdomColor()
+    public void SetColor(int colorIndex)
     {
-        var index = Random.Range(0, colorSprites.Length);
-        var Sprite = colorSprites[index];
-        return Sprite;
+        var Sprite = colorSprites[colorIndex];
+        //currentColorIndex  = colorIndex;
+        currentSprite = Sprite;
     }
+    //public int GetColorIndex()
+    //{
+    //    return currentColorIndex;
+    //}
 
 }
