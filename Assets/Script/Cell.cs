@@ -45,12 +45,8 @@ public class Cell : MonoBehaviour
     public void SetColor(int colorIndex)
     {
         var Sprite = colorSprites[colorIndex];
-        //currentColorIndex  = colorIndex;
         currentSprite = Sprite;
     }
-    //public int GetColorIndex()
-    //{
-    //    return currentColorIndex;
-    //}
+
 
 }

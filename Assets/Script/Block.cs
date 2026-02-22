@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
-
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -51,7 +50,7 @@ public class Block : MonoBehaviour
         this.blockDataIndex = BlockDataIndex;
         Hide();
         // hien thi block du lieu tu BlockData
-        var blockData = BlockData.Get(BlockDataIndex);
+        var blockData = BlockData.GetShape(BlockDataIndex);
         var rows = blockData.GetLength(0);
         var cols = blockData.GetLength(1);
         center = new Vector2(cols / 2.0f, rows / 2.0f);

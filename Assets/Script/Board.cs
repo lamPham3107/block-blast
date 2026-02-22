@@ -31,11 +31,31 @@ public class Board : MonoBehaviour
                 cells[i, j].Hide();
             }
         }
+        CreateBoard();
+    }
+    private void CreateBoard()
+    {
+        var index = UnityEngine.Random.Range(0, BoardDataGrid.Length());
+        var boardDataGrid = BoardDataGrid.Get(index);
+        var colorIndex = UnityEngine.Random.Range(0, cellPrefab.colorSprites.Length);
+        for (int i = 0; i < Size; i++)
+        {
+            for (int j = 0; j < Size; j++)
+            {
+                if (boardDataGrid[i, j] == 1)
+                {
+                    boardData[i, j] = 2;
+                    cellColors[i, j] = UnityEngine.Random.Range(0, cellPrefab.colorSprites.Length);
+                    cells[i, j].SetColor(colorIndex);
+                    cells[i, j].Normal();
+                }
+            }
+        }
     }
 
     public void Hover(Vector2Int point, int blockDataIndex, int colorIndex)
     {
-        var blockData = BlockData.Get(blockDataIndex);
+        var blockData = BlockData.GetShape(blockDataIndex);
         var blockRows = blockData.GetLength(0);
         var blockCols = blockData.GetLength(1);
         currentHoverColor = colorIndex;
@@ -96,7 +116,7 @@ public class Board : MonoBehaviour
 
     public bool Place(Vector2Int point, int blockDataIndex, int colorIndex)
     {
-        var blockData = BlockData.Get(blockDataIndex);
+        var blockData = BlockData.GetShape(blockDataIndex);
         var blockRows = blockData.GetLength(0);
         var blockCols = blockData.GetLength(1);
         currentHoverColor = colorIndex;
@@ -322,7 +342,7 @@ public class Board : MonoBehaviour
     }
     public bool CheckLose(int blockDataIndex)
     {
-        var blockData = BlockData.Get(blockDataIndex);
+        var blockData = BlockData.GetShape(blockDataIndex);
         var blockRows = blockData.GetLength(0);
         var blockCols = blockData.GetLength(1);
         for (int r = 0; r <= Size - blockRows; r++)
@@ -345,6 +365,7 @@ public class Board : MonoBehaviour
         {
             for (int c = 0; c < BlockCol; c++)
             {
+                
                 if (blockData[r, c] != 0 && boardData[BoardCol + c , BoardRow + r]  == 2)
                 {
                     return false;

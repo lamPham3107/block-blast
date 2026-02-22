@@ -1,51 +1,148 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+public struct BlockInfo
+{
+    public int[,] shape;
+    public int weight;
 
+    public BlockInfo(int[,] shape, int weight)
+    {
+        this.shape = shape;
+        this.weight = weight;
+    }
+}
 public class BlockData : MonoBehaviour
 {
-    private static readonly int[][,] blockData = new int[][,]
+    private static readonly BlockInfo[] blockData = new BlockInfo[]
     {
-        new int[,]
-        {
-            {0, 0, 1 },
-            {0, 0, 1 },
-            {1, 1, 1 }
-        },
-        new int[,]
-        {
-            {1, 1 },
-            {1, 1 }
-        },
-        new int[,]
-        {
-            {1, 1, 1 },
-            {1, 1, 1 },
-            {0, 0, 0 }
-        },
-        new int[,]
-        {
-            {1, 1, 1 }
-        },
-        new int[,]
-        {
-            {1 },
-            {1 },
-            {1 }
-        },
+    new BlockInfo(new int[,]
+    {
+        {1,1,1},
+        {0,1,0}
+    }, 5), 
 
+    new BlockInfo(new int[,]
+    {
+        {0,1,0},
+        {1,1,1}
+    }, 5),
+
+    new BlockInfo(new int[,]
+    {
+        {1,0},
+        {1,1},
+        {1,0}
+    }, 5),
+
+    new BlockInfo(new int[,]
+    {
+        {0,1},
+        {1,1},
+        {0,1}
+    }, 5),
+
+    new BlockInfo(new int[,]
+    {
+        {1,0},
+        {1,0},
+        {1,1}
+    }, 5),
+
+    new BlockInfo(new int[,]
+    {
+        {0,1},
+        {0,1},
+        {1,1}
+    }, 5),
+
+    new BlockInfo(new int[,]
+    {
+        {1,1,1},
+        {1,0,0}
+    }, 5),
+
+    new BlockInfo(new int[,]
+    {
+        {0,0,1},
+        {1,1,1}
+    }, 5),
+
+
+    new BlockInfo(new int[,]
+    {
+        {1,1,0},
+        {0,1,1}
+    }, 3),
+
+    new BlockInfo(new int[,]
+    {
+        {0,1},
+        {1,1},
+        {1,0}
+    }, 3),
+
+    new BlockInfo(new int[,]
+    {
+        {0,1,1},
+        {1,1,0}
+    }, 3),
+
+    new BlockInfo(new int[,]
+    {
+        {1,0},
+        {1,1},
+        {0,1}
+    }, 3),
+
+    new BlockInfo(new int[,]
+    {
+        {1,1,1,1}
+    }, 3),
+
+    new BlockInfo(new int[,]
+    {
+        {1},
+        {1},
+        {1},
+        {1}
+    }, 3),
+
+
+    new BlockInfo(new int[,]
+    {
+        {1,1},
+        {1,1}
+    }, 20),
+
+    new BlockInfo(new int[,]
+    {
+        {1,1}
+    }, 20),
+
+    new BlockInfo(new int[,]
+    {
+        {1},
+        {1}
+    }, 20),
     };
+
     static BlockData()
     {
         foreach (var block in blockData)
         {
-            ReverseBlock(block);
+            ReverseBlock(block.shape);
         }
     }
 
-    public static int[,] Get(int index)
+    public static int[,] GetShape(int index)
     {
-        return blockData[index];
+        return blockData[index].shape;
+    }
+
+    public static int GetWeight(int index)
+    {
+        return blockData[index].weight;
     }
 
     public static int Length()
