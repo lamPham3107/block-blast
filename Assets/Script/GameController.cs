@@ -28,6 +28,7 @@ public class GameController : MonoBehaviour
     }
     private void Start()
     {
+        Application.targetFrameRate = 60;
         end_game_popup.gameObject.SetActive(false);
         end_game_image.gameObject.SetActive(false);
         Feedback.Instance.Img_feedback.gameObject.SetActive(false);
