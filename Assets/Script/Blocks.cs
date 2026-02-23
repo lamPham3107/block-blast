@@ -105,13 +105,13 @@ public class Blocks : MonoBehaviour
     private int GetWeightedRamdomBlock()
     {
         var totalWeight = 0;
-        for (int i = 0; i < BlockData.Length() - 1; i++)
+        for (int i = 0; i < BlockData.Length(); i++)
         {
             totalWeight += BlockData.GetWeight(i);
         }
         var randomValue = Random.Range(0, totalWeight);
         var cumulativeWeight = 0;
-        for (int i = 0; i < BlockData.Length() - 1; i++)
+        for (int i = 0; i < BlockData.Length(); i++)
         {
             cumulativeWeight += BlockData.GetWeight(i);
             if (randomValue < cumulativeWeight)
@@ -119,6 +119,6 @@ public class Blocks : MonoBehaviour
                 return i;
             }
         }
-        return BlockData.Length() - 1;
+        return BlockData.Length();
     }
 }

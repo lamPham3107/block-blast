@@ -170,6 +170,8 @@ public class Board : MonoBehaviour
             {
                 gameController.AddScore();
                 fullLineCols.Add(c);
+                SFX.Instance.PlayClearSFX();
+                Feedback.Instance.ShowFeedbackRandom();
             }
         }
         
@@ -192,6 +194,8 @@ public class Board : MonoBehaviour
             {
                 gameController.AddScore();
                 fullLineRows.Add(r);
+                SFX.Instance.PlayClearSFX();
+                Feedback.Instance.ShowFeedbackRandom();
             }
         }
     }
@@ -206,7 +210,6 @@ public class Board : MonoBehaviour
                 cells[c, row].Hide();
             }
         }
-
         fullLineRows.Clear();
     }
     private void ClearFullCols()

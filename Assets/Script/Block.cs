@@ -84,6 +84,7 @@ public class Block : MonoBehaviour
     {
         // lay vi tri chuot trong the gioi
         inputPos = cam.ScreenToWorldPoint(Input.mousePosition);
+        SFX.Instance.PlayButtonClickSFX();
         transform.position = position + offset;
         transform.localScale = Vector3.one;
         currentDragPoint = Vector2Int.RoundToInt((Vector2)transform.position - center);
@@ -100,6 +101,7 @@ public class Block : MonoBehaviour
         // neu dat khoi thanh cong thi an di
         if(board.Place(currentDragPoint, blockDataIndex, currentColorIndex))
         {
+            SFX.Instance.PlayPlaceSFX();
             gameObject.SetActive(false);
             blocks.Remove();
         }

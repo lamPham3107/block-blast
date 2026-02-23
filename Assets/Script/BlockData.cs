@@ -16,115 +16,115 @@ public class BlockData : MonoBehaviour
 {
     private static readonly BlockInfo[] blockData = new BlockInfo[]
     {
-    new BlockInfo(new int[,]
-    {
-        {1,1,1},
-        {0,1,0}
-    }, 5), 
+        new BlockInfo(new int[,]
+        {
+            {1,1,1},
+            {0,1,0}
+        }, 3), 
 
-    new BlockInfo(new int[,]
-    {
-        {0,1,0},
-        {1,1,1}
-    }, 5),
+        new BlockInfo(new int[,]
+        {
+            {0,1,0},
+            {1,1,1}
+        }, 3),
 
-    new BlockInfo(new int[,]
-    {
-        {1,0},
-        {1,1},
-        {1,0}
-    }, 5),
+        new BlockInfo(new int[,]
+        {
+            {1,0},
+            {1,1},
+            {1,0}
+        }, 3),
 
-    new BlockInfo(new int[,]
-    {
-        {0,1},
-        {1,1},
-        {0,1}
-    }, 5),
+        new BlockInfo(new int[,]
+        {
+            {0,1},
+            {1,1},
+            {0,1}
+        }, 3),
 
-    new BlockInfo(new int[,]
-    {
-        {1,0},
-        {1,0},
-        {1,1}
-    }, 5),
+        new BlockInfo(new int[,]
+        {
+            {1,0},
+            {1,0},
+            {1,1}
+        }, 3),
 
-    new BlockInfo(new int[,]
-    {
-        {0,1},
-        {0,1},
-        {1,1}
-    }, 5),
+        new BlockInfo(new int[,]
+        {
+            {0,1},
+            {0,1},
+            {1,1}
+        }, 3),
 
-    new BlockInfo(new int[,]
-    {
-        {1,1,1},
-        {1,0,0}
-    }, 5),
+        new BlockInfo(new int[,]
+        {
+            {1,1,1},
+            {1,0,0}
+        }, 3),
 
-    new BlockInfo(new int[,]
-    {
-        {0,0,1},
-        {1,1,1}
-    }, 5),
-
-
-    new BlockInfo(new int[,]
-    {
-        {1,1,0},
-        {0,1,1}
-    }, 3),
-
-    new BlockInfo(new int[,]
-    {
-        {0,1},
-        {1,1},
-        {1,0}
-    }, 3),
-
-    new BlockInfo(new int[,]
-    {
-        {0,1,1},
-        {1,1,0}
-    }, 3),
-
-    new BlockInfo(new int[,]
-    {
-        {1,0},
-        {1,1},
-        {0,1}
-    }, 3),
-
-    new BlockInfo(new int[,]
-    {
-        {1,1,1,1}
-    }, 3),
-
-    new BlockInfo(new int[,]
-    {
-        {1},
-        {1},
-        {1},
-        {1}
-    }, 3),
+        new BlockInfo(new int[,]
+        {
+            {0,0,1},
+            {1,1,1}
+        }, 3),
 
 
-    new BlockInfo(new int[,]
-    {
-        {1,1},
-        {1,1}
-    }, 20),
+        new BlockInfo(new int[,]
+        {
+            {1,1,0},
+            {0,1,1}
+        }, 3),
 
-    new BlockInfo(new int[,]
-    {
-        {1,1}
-    }, 20),
+        new BlockInfo(new int[,]
+        {
+            {0,1},
+            {1,1},
+            {1,0}
+        }, 3),
 
-    new BlockInfo(new int[,]
-    {
-        {1},
-        {1}
-    }, 20),
+        new BlockInfo(new int[,]
+        {
+            {0,1,1},
+            {1,1,0}
+        }, 3),
+
+        new BlockInfo(new int[,]
+        {
+            {1,0},
+            {1,1},
+            {0,1}
+        }, 3),
+
+        new BlockInfo(new int[,]
+        {
+            {1,1,1,1}
+        }, 3),
+
+        new BlockInfo(new int[,]
+        {
+            {1},
+            {1},
+            {1},
+            {1}
+        }, 3),
+
+
+        new BlockInfo(new int[,]
+        {
+            {1,1},
+            {1,1}
+        }, 20),
+
+        new BlockInfo(new int[,]
+        {
+            {1,1}
+        }, 25),
+
+        new BlockInfo(new int[,]
+        {
+            {1},
+            {1}
+        }, 25),
     };
 
     static BlockData()

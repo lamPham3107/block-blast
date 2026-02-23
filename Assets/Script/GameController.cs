@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -19,7 +19,7 @@ public class GameController : MonoBehaviour
     {
         if (Instance != null && Instance != this)
         {
-            Destroy(this);
+            Destroy(gameObject); // ✅ Sửa: Destroy gameObject, không phải this
         }
         else
         {
@@ -30,6 +30,7 @@ public class GameController : MonoBehaviour
     {
         end_game_popup.gameObject.SetActive(false);
         end_game_image.gameObject.SetActive(false);
+        Feedback.Instance.Img_feedback.gameObject.SetActive(false);
         currentScore = 0;
         UpdateScore();
     }
@@ -48,6 +49,7 @@ public class GameController : MonoBehaviour
     {
         var time = 1.5f;
         end_game_image.gameObject.SetActive(true);
+        SFX.Instance.PlayGameOverSFX();
         SetScore();
         while (time > 0.0f)
         {
@@ -67,6 +69,7 @@ public class GameController : MonoBehaviour
         UpdateScore();
         end_game_image.gameObject.SetActive(false);
         end_game_popup.gameObject.SetActive(false);
+        Feedback.Instance.Img_feedback.gameObject.SetActive(false);
         SceneManager.LoadScene(0);
     }
     private void SetScore()
