@@ -321,8 +321,8 @@ public class Board : MonoBehaviour
             {
                 if (boardData[c, r] == 2)
                 {
-                    cells[c, r].SetColor(cellColors[c, r]);
-                    cells[c, r].Normal();
+                    //cells[c, r].SetColor(cellColors[c, r]);
+                    cells[c, r].UnHighlighted();
                 }
             }
         }
@@ -336,8 +336,8 @@ public class Board : MonoBehaviour
             {
                 if (boardData[c, r] == 2)
                 {
-                    cells[c, r].SetColor(cellColors[c, r]);
-                    cells[c, r].Normal();
+                    //cells[c, r].SetColor(cellColors[c, r]);
+                    cells[c, r].UnHighlighted();
                 }
             }
         }

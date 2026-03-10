@@ -28,8 +28,13 @@ public class Cell : MonoBehaviour
     {
         gameObject.SetActive(true);
         spriteRenderer.color = new Color(1f, 1f, 1f, 0.5f);
-        //spriteRenderer.sprite = currentSprite;
         Debug.Log("Highlighted");
+    }
+    public void UnHighlighted()
+    {
+        gameObject.SetActive(true);
+        spriteRenderer.color = new Color(1f, 1f, 1f, 1f);
+
     }
     public void Hower()
     {
